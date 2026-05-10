@@ -1,6 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "./navbar.jsx";
+import FavoriteButton from "./FavoriteButton.jsx";
 import headerstyles from "./Header.module.css";
 import productstyles from "./Product.module.css";
 
@@ -69,21 +70,21 @@ export function HomePage() {
         </div>
 
         {products.map((product) => (
-          <div key={product.idDrink} className={productstyles.card}>
-            <button
-              onClick={() => navigateToPage(product.idDrink)}
-              className={productstyles.button}
+          <Link to={`/products/${product.idDrink}`}>
+            <div
+              key={product.idDrink}
+              className={`${productstyles.card} ${productstyles.details}`}
             >
-              <div className={productstyles.details}>
-                <img
-                  src={product.strDrinkThumb}
-                  alt={product.strDrink}
-                  width="50"
-                />
-                <span className={productstyles.name}>{product.strDrink}</span>
-              </div>
-            </button>
-          </div>
+              <img
+                src={`${product.strDrinkThumb}/medium`}
+                alt={product.strDrink}
+                width="50"
+              />
+              <FavoriteButton />
+              <br />
+              <span className={productstyles.name}>{product.strDrink}</span>
+            </div>
+          </Link>
         ))}
       </main>
     </div>

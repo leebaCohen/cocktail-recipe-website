@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import headerstyles from "./Header.module.css";
 import Navbar from "./navbar";
 import productstyles from "./Product.module.css";
+import FavoriteButton from "./FavoriteButton";
 
 function ProductDetails() {
   const { idDrink } = useParams();
@@ -45,6 +46,7 @@ function ProductDetails() {
       <main className={productstyles.singleContainer}>
         <div className={`${productstyles.card} ${productstyles.largeCard}`}>
           <h2>{product.strDrink}</h2>
+          <FavoriteButton />
           <img src={product.strDrinkThumb} alt={product.strDrink} width="200" />
           <div className={productstyles.details}>
             <p>Category: {product.strCategory}</p>
