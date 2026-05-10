@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import headerstyles from "./Header.module.css";
-import navstyles from "./NavBar.module.css";
+import Navbar from "./navbar";
 import productstyles from "./Product.module.css";
 
 function ProductDetails() {
@@ -40,16 +40,7 @@ function ProductDetails() {
     <>
       <header className={headerstyles.header}>
         <h2 className={headerstyles.h2}>Cocktail Recipe: {product.strDrink}</h2>
-        <nav className={navstyles.navbar}>
-          <ul className={navstyles.navLinks}>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/products">Products</a>
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
       </header>
       <main className={productstyles.singleContainer}>
         <div className={`${productstyles.card} ${productstyles.largeCard}`}>

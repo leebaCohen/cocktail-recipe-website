@@ -1,23 +1,23 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Navbar from "./navbar.jsx";
 import headerstyles from "./Header.module.css";
-import navstyles from "./NavBar.module.css";
 import productstyles from "./Product.module.css";
 
 export function HomePage() {
   const navigateTo = useNavigate();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+  const [query, setQuery] = useState("margarita");
 
   useEffect(() => {
     const fetchCocktails = async () => {
       try {
         setIsLoading(true);
 
-        //searching for margarita as default cocktail list to display on homepage
-        //change to user search input in the future
         const response = await fetch(
-          "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
+          `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`,
         );
         const data = await response.json();
 
@@ -30,7 +30,12 @@ export function HomePage() {
     };
 
     fetchCocktails();
-  }, []);
+  }, [query]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setQuery(searchValue);
+  };
 
   const navigateToPage = (idDrink) => {
     navigateTo(`/products/${idDrink}`);
@@ -42,18 +47,27 @@ export function HomePage() {
     <div>
       <header className={headerstyles.header}>
         <h2 className={headerstyles.h2}>Cocktail Recipes</h2>
-        <nav className={navstyles.navbar}>
-          <ul className={navstyles.navLinks}>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/products">Products</a>
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
       </header>
       <main className={productstyles.container}>
+        <div>
+          <form
+            className={productstyles.searchForm}
+            onSubmit={handleSearch}
+            value={searchValue}
+          >
+            <input
+              type="text"
+              placeholder="Search cocktails..."
+              className={productstyles.searchInput}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <button type="submit" className={productstyles.searchButton}>
+              Search
+            </button>
+          </form>
+        </div>
+
         {products.map((product) => (
           <div key={product.idDrink} className={productstyles.card}>
             <button
