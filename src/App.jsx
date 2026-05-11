@@ -1,14 +1,61 @@
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/homepage";
 import ProductDetails from "./pages/product";
+import FavoritesPage from "./pages/FavoritesPage";
+
 import "./App.css";
 
 export default function App() {
+  //fetch api here so products can be access by homepage and favoritespage
+  const [products, setProducts] = useState([]);
+  const [query, setQuery] = useState("margarita");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchCocktails = async () => {
+      try {
+        setIsLoading(true);
+
+        const response = await fetch(
+          `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`,
+        );
+        const data = await response.json();
+
+        setProducts(data.drinks || []);
+      } catch (error) {
+        console.error("Error fetching cocktails:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCocktails();
+  }, [query]);
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/"
+        element={
+          <HomePage
+            products={products}
+            setQuery={setQuery}
+            isLoading={isLoading}
+          />
+        }
+      />
 
-      <Route path="/products/:idDrink" element={<ProductDetails />} />
+      <Route
+        path="/products/:idDrink"
+        element={
+          <ProductDetails isLoading={isLoading} setIsLoading={setIsLoading} />
+        }
+      />
+
+      <Route
+        path="/favorites"
+        element={<FavoritesPage products={products} />}
+      />
 
       <Route path="*" element={<div>Page Not Found</div>} />
     </Routes>

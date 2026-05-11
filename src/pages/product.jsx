@@ -5,10 +5,9 @@ import Navbar from "./navbar";
 import productstyles from "./Product.module.css";
 import FavoriteButton from "./FavoriteButton";
 
-function ProductDetails() {
+function ProductDetails({ isLoading, setIsLoading }) {
   const { idDrink } = useParams();
   const [product, setProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -46,7 +45,7 @@ function ProductDetails() {
       <main className={productstyles.singleContainer}>
         <div className={`${productstyles.card} ${productstyles.largeCard}`}>
           <h2>{product.strDrink}</h2>
-          <FavoriteButton />
+          <FavoriteButton id={idDrink} />
           <img src={product.strDrinkThumb} alt={product.strDrink} width="200" />
           <div className={productstyles.details}>
             <p>Category: {product.strCategory}</p>
