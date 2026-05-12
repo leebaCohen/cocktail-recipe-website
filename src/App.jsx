@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/homepage";
 import ProductDetails from "./pages/product";
 import FavoritesPage from "./pages/FavoritesPage";
+import { FavoritesProvider } from "./pages/FavoritesProvider";
 
 import "./App.css";
 
@@ -32,32 +33,35 @@ export default function App() {
 
     fetchCocktails();
   }, [query]);
+
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <HomePage
-            products={products}
-            setQuery={setQuery}
-            isLoading={isLoading}
-          />
-        }
-      />
+    <FavoritesProvider>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              products={products}
+              setQuery={setQuery}
+              isLoading={isLoading}
+            />
+          }
+        />
 
-      <Route
-        path="/products/:idDrink"
-        element={
-          <ProductDetails isLoading={isLoading} setIsLoading={setIsLoading} />
-        }
-      />
+        <Route
+          path="/products/:idDrink"
+          element={
+            <ProductDetails isLoading={isLoading} setIsLoading={setIsLoading} />
+          }
+        />
 
-      <Route
-        path="/favorites"
-        element={<FavoritesPage products={products} />}
-      />
+        <Route
+          path="/favorites"
+          element={<FavoritesPage products={products} />}
+        />
 
-      <Route path="*" element={<div>Page Not Found</div>} />
-    </Routes>
+        <Route path="*" element={<div>Page Not Found</div>} />
+      </Routes>
+    </FavoritesProvider>
   );
 }

@@ -1,47 +1,29 @@
-import { useState, useEffect } from "react";
+import { useFavorites } from "./FavoritesProvider";
 import { MdStarRate, MdOutlineStarOutline } from "react-icons/md";
 import styles from "./FavoriteButton.module.css";
 
 function FavoriteButton({ id }) {
-  // state logic for favorites
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  // load the favorites from localStorage
-  useEffect(() => {
-    let savedFavorites = localStorage.getItem("favorites");
-    const favorites = savedFavorites ? JSON.parse(savedFavorites) : [];
-    setIsFavorite(favorites.includes(id));
-    console.log(favorites);
-  }, [id]);
+  const { isFavorite, addFavorite, removeFavorite } = useFavorites();
 
   function handleFavoriteClick(e) {
     e.stopPropagation();
-    setIsFavorite(!isFavorite);
-    const savedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]",
-    );
 
-    let updatedFavorites;
-    if (savedFavorites.includes(id)) {
-      updatedFavorites = savedFavorites.filter((favId) => favId !== id);
-      setIsFavorite(false);
+    if (isFavorite(id)) {
+      removeFavorite(id);
     } else {
-      updatedFavorites = id ? [...savedFavorites, id] : savedFavorites;
-      setIsFavorite(true);
+      addFavorite(id);
     }
-
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   }
 
   return (
-    <button onClick={(e) => handleFavoriteClick(e)}>
-      {isFavorite ? (
+    <button className={styles.favBtn} onClick={handleFavoriteClick}>
+      {isFavorite(id) ? (
         <>
           Added to Favorites <MdStarRate color="#ffee00" />
         </>
       ) : (
         <>
-          Add to Favorites <MdOutlineStarOutline color="#ffee00" />
+          Add to Favorites <MdOutlineStarOutline color="gray" />
         </>
       )}
     </button>

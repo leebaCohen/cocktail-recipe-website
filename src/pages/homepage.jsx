@@ -21,7 +21,7 @@ export function HomePage({ products, setQuery, isLoading }) {
   if (isLoading) return <div>Loading cocktails...</div>;
 
   return (
-    <div>
+    <>
       <header className={headerstyles.header}>
         <h2 className={headerstyles.h2}>Cocktail Recipes</h2>
         <Navbar />
@@ -47,8 +47,8 @@ export function HomePage({ products, setQuery, isLoading }) {
 
         {products.map((product) => (
           <div key={product.idDrink}>
-            <div className={`${productstyles.card} ${productstyles.details}`}>
-              <Link to={`/products/${product.idDrink}`}>
+            <Link to={`/products/${product.idDrink}`}>
+              <div className={`${productstyles.card} ${productstyles.details}`}>
                 <img
                   src={`${product.strDrinkThumb}/medium`}
                   alt={product.strDrink}
@@ -56,12 +56,12 @@ export function HomePage({ products, setQuery, isLoading }) {
                 />
                 <br />
                 <span className={productstyles.name}>{product.strDrink}</span>
-              </Link>
-            </div>
+              </div>
+            </Link>
             <FavoriteButton id={product.idDrink} />
           </div>
         ))}
       </main>
-    </div>
+    </>
   );
 }

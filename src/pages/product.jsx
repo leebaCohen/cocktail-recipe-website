@@ -49,7 +49,7 @@ function ProductDetails({ isLoading, setIsLoading }) {
           <img src={product.strDrinkThumb} alt={product.strDrink} width="200" />
           <div className={productstyles.details}>
             <p>Category: {product.strCategory}</p>
-            <p>Instructions:{product.strInstructions}</p>
+            <p>Instructions: {product.strInstructions}</p>
           </div>
         </div>
       </main>
