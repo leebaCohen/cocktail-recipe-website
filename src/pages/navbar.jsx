@@ -6,10 +6,27 @@ export default function Navbar() {
     <nav className={navstyles.navbar}>
       <ul className={navstyles.navLinks}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">
+            Home
+            <img
+              src={`${import.meta.env.BASE_URL}favicon-32x32.png`}
+              alt="Cocktail Recipe Logo"
+              width="32"
+              height="32"
+            />
+          </Link>
         </li>
         <li>
           <Link to="/favorites">Favorites</Link>
+        </li>
+        <li>
+          <Link to="/about">About Us</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact Us</Link>
+        </li>
+        <li>
+          <Link to="/privacy">Privacy Policy</Link>
         </li>
       </ul>
     </nav>

@@ -10,7 +10,7 @@ import "./App.css";
 export default function App() {
   //fetch api here so products can be access by homepage and favoritespage
   const [products, setProducts] = useState([]);
-  const [query, setQuery] = useState("margarita");
+  const [query, setQuery] = useState("cocktail");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function App() {
         setIsLoading(true);
 
         const response = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`,
+          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${query}`,
         );
         const data = await response.json();
 
@@ -47,19 +47,22 @@ export default function App() {
             />
           }
         />
-
         <Route
           path="/products/:idDrink"
           element={
             <ProductDetails isLoading={isLoading} setIsLoading={setIsLoading} />
           }
         />
-
         <Route
           path="/favorites"
           element={<FavoritesPage products={products} />}
         />
+        //routes for additional pages
+        {/* <Route path="/about" element={<AboutPage />} />
 
+        <Route path="/contact" element={<ContactPage />} />
+
+        <Route path="/privacy" element={<PrivacyPage />} /> */}
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
     </FavoritesProvider>
