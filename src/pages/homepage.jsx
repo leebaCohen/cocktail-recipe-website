@@ -1,36 +1,13 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "./navbar.jsx";
+import FavoriteButton from "./FavoriteButton.jsx";
 import headerstyles from "./Header.module.css";
 import productstyles from "./Product.module.css";
 
-export function HomePage() {
+export function HomePage({ products, setQuery, isLoading }) {
   const navigateTo = useNavigate();
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
-  const [query, setQuery] = useState("margarita");
-
-  useEffect(() => {
-    const fetchCocktails = async () => {
-      try {
-        setIsLoading(true);
-
-        const response = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`,
-        );
-        const data = await response.json();
-
-        setProducts(data.drinks || []);
-      } catch (error) {
-        console.error("Error fetching cocktails:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchCocktails();
-  }, [query]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -44,7 +21,7 @@ export function HomePage() {
   if (isLoading) return <div>Loading cocktails...</div>;
 
   return (
-    <div>
+    <>
       <header className={headerstyles.header}>
         <h2 className={headerstyles.h2}>Cocktail Recipes</h2>
         <Navbar />
@@ -69,23 +46,22 @@ export function HomePage() {
         </div>
 
         {products.map((product) => (
-          <div key={product.idDrink} className={productstyles.card}>
-            <button
-              onClick={() => navigateToPage(product.idDrink)}
-              className={productstyles.button}
-            >
-              <div className={productstyles.details}>
+          <div key={product.idDrink}>
+            <Link to={`/products/${product.idDrink}`}>
+              <div className={`${productstyles.card} ${productstyles.details}`}>
                 <img
-                  src={product.strDrinkThumb}
+                  src={`${product.strDrinkThumb}/medium`}
                   alt={product.strDrink}
                   width="50"
                 />
+                <br />
                 <span className={productstyles.name}>{product.strDrink}</span>
               </div>
-            </button>
+            </Link>
+            <FavoriteButton id={product.idDrink} />
           </div>
         ))}
       </main>
-    </div>
+    </>
   );
 }
