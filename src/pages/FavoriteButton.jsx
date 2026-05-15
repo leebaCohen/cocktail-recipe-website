@@ -6,6 +6,7 @@ function FavoriteButton({ id }) {
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
 
   function handleFavoriteClick(e) {
+    e.preventDefault();
     e.stopPropagation();
 
     if (isFavorite(id)) {
@@ -19,11 +20,11 @@ function FavoriteButton({ id }) {
     <button className={styles.favBtn} onClick={handleFavoriteClick}>
       {isFavorite(id) ? (
         <>
-          Added to Favorites <MdStarRate color="#ffee00" />
+          <MdStarRate className={styles.yellowStar} />
         </>
       ) : (
         <>
-          Add to Favorites <MdOutlineStarOutline color="gray" />
+          <MdOutlineStarOutline className={styles.grayStar} />
         </>
       )}
     </button>
