@@ -2,8 +2,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "./navbar.jsx";
 import FavoriteButton from "./FavoriteButton.jsx";
-import headerstyles from "./Header.module.css";
-import productstyles from "./Product.module.css";
+import homepageStyles from "./Homepage.module.css";
+import LoadingSpinner from "./LoadingSpinner.jsx";
 
 export function HomePage({ products, setQuery, isLoading }) {
   const navigateTo = useNavigate();
@@ -18,49 +18,60 @@ export function HomePage({ products, setQuery, isLoading }) {
     navigateTo(`/products/${idDrink}`);
   };
 
-  if (isLoading) return <div>Loading cocktails...</div>;
+  if (isLoading)
+    return (
+      <>
+        <header>
+          <Navbar />
+        </header>
+        <main>
+          <LoadingSpinner />
+        </main>
+      </>
+    );
 
   return (
     <>
-      <header className={headerstyles.header}>
-        <h2 className={headerstyles.h2}>Cocktail Recipes</h2>
+      <header>
         <Navbar />
       </header>
-      <main className={productstyles.container}>
+      <main>
         <div>
           <form
-            className={productstyles.searchForm}
+            className={homepageStyles.searchForm}
             onSubmit={handleSearch}
             value={searchValue}
           >
             <input
               type="text"
+              name="searchField"
               placeholder="Search cocktails..."
-              className={productstyles.searchInput}
+              className={homepageStyles.searchInput}
               onChange={(e) => setSearchValue(e.target.value)}
             />
-            <button type="submit" className={productstyles.searchButton}>
+            <button type="submit" className={homepageStyles.searchButton}>
               Search
             </button>
           </form>
         </div>
 
-        {products.map((product) => (
-          <div key={product.idDrink}>
-            <Link to={`/products/${product.idDrink}`}>
-              <div className={`${productstyles.card} ${productstyles.details}`}>
-                <img
-                  src={`${product.strDrinkThumb}/medium`}
-                  alt={product.strDrink}
-                  width="50"
-                />
-                <br />
-                <span className={productstyles.name}>{product.strDrink}</span>
+        <div className={homepageStyles.productsContainer}>
+          {products.map((product) => (
+            <Link key={product.idDrink} to={`/products/${product.idDrink}`}>
+              <div className={homepageStyles.card}>
+                <div className={homepageStyles.imageContainer}>
+                  <img
+                    src={`${product.strDrinkThumb}/medium`}
+                    alt={product.strDrink}
+                  />
+
+                  <FavoriteButton id={product.idDrink} />
+                </div>
+                <p>{product.strDrink}</p>
               </div>
             </Link>
-            <FavoriteButton id={product.idDrink} />
-          </div>
-        ))}
+          ))}
+        </div>
       </main>
     </>
   );

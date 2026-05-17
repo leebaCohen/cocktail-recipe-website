@@ -9,7 +9,9 @@ function FavoritesPage({ products }) {
   if (favorites.length === 0) {
     return (
       <>
-        <Navbar />
+        <header>
+          <Navbar />
+        </header>
         <p>You do not have any favorites yet</p>
       </>
     );

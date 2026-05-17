@@ -4,6 +4,7 @@ import headerstyles from "./Header.module.css";
 import Navbar from "./navbar";
 import productstyles from "./Product.module.css";
 import FavoriteButton from "./FavoriteButton";
+import LoadingSpinner from "./LoadingSpinner";
 
 function ProductDetails({ isLoading, setIsLoading }) {
   const { idDrink } = useParams();
@@ -33,22 +34,27 @@ function ProductDetails({ isLoading, setIsLoading }) {
     }
   }, [idDrink]);
 
-  if (isLoading) return <div>Searching...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
   if (!product) return <div>Cocktail not found!</div>;
 
   return (
     <>
-      <header className={headerstyles.header}>
-        <h2 className={headerstyles.h2}>Cocktail Recipe: {product.strDrink}</h2>
+      <header>
         <Navbar />
       </header>
       <main className={productstyles.singleContainer}>
         <div className={`${productstyles.card} ${productstyles.largeCard}`}>
           <h2>{product.strDrink}</h2>
           <FavoriteButton id={idDrink} />
-          <img src={product.strDrinkThumb} alt={product.strDrink} width="200" />
+          <img src={`${product.strDrinkThumb}/medium`} alt={product.strDrink} />
           <div className={productstyles.details}>
             <p>Category: {product.strCategory}</p>
+            <p>Ingredients: </p>
             <p>Instructions: {product.strInstructions}</p>
           </div>
         </div>
