@@ -11,6 +11,7 @@ export function HomePage({ products, setQuery, isLoading }) {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    //set the query to search for cocktails by name using the search value from the input
     setQuery(`search.php?s=${searchValue}`);
   };
 
