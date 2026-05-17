@@ -38,3 +38,9 @@
 .navLinks a:hover {
   color: #ffcbd8;
 }
+
+.favoritesLink {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}

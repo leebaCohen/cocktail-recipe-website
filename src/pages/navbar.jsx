@@ -1,5 +1,6 @@
 import navstyles from "./NavBar.module.css";
 import { Link } from "react-router-dom";
+import { MdStarRate, MdOutlineStarOutline } from "react-icons/md";
 
 export default function Navbar() {
   return (
@@ -20,7 +21,12 @@ export default function Navbar() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/favorites">Favorites</Link>
+          <Link to="/favorites">
+            <div className={navstyles.favoritesLink}>
+              <MdStarRate />
+              Favorites
+            </div>
+          </Link>
         </li>
         <li>
           <Link to="/about">About Us</Link>
