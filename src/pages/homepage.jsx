@@ -11,7 +11,7 @@ export function HomePage({ products, setQuery, isLoading }) {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setQuery(searchValue);
+    setQuery(`search.php?s=${searchValue}`);
   };
 
   const navigateToPage = (idDrink) => {

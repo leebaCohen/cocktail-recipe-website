@@ -10,7 +10,7 @@ import "./App.css";
 export default function App() {
   //fetch api here so products can be access by homepage and favoritespage
   const [products, setProducts] = useState([]);
-  const [query, setQuery] = useState("cocktail");
+  const [query, setQuery] = useState("filter.php?c=cocktail");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function App() {
         setIsLoading(true);
 
         const response = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${query}`,
+          `https://www.thecocktaildb.com/api/json/v1/1/${query}`,
         );
         const data = await response.json();
 
