@@ -1,6 +1,9 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/homepage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import PrivacyPage from "./pages/PrivacyPage";
 import ProductDetails from "./pages/product";
 import FavoritesPage from "./pages/FavoritesPage";
 import { FavoritesProvider } from "./pages/FavoritesProvider";
@@ -8,9 +11,9 @@ import { FavoritesProvider } from "./pages/FavoritesProvider";
 import "./App.css";
 
 export default function App() {
-  //fetch api here so products can be access by homepage and favoritespage
+  //fetch API here so products can be access by homepage and favoritespage
   const [products, setProducts] = useState([]);
-  const [query, setQuery] = useState("cocktail");
+  const [query, setQuery] = useState("filter.php?c=cocktail");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -19,7 +22,7 @@ export default function App() {
         setIsLoading(true);
 
         const response = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${query}`,
+          `https://www.thecocktaildb.com/api/json/v1/1/${query}`,
         );
         const data = await response.json();
 
@@ -57,12 +60,13 @@ export default function App() {
           path="/favorites"
           element={<FavoritesPage products={products} />}
         />
-        //routes for additional pages
-        {/* <Route path="/about" element={<AboutPage />} />
+
+        <Route path="/about" element={<AboutPage />} />
 
         <Route path="/contact" element={<ContactPage />} />
 
-        <Route path="/privacy" element={<PrivacyPage />} /> */}
+        <Route path="/privacy" element={<PrivacyPage />} />
+
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
     </FavoritesProvider>
