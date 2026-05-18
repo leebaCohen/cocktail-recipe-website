@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import FavoriteButton from "./FavoriteButton";
 import { useFavorites } from "./FavoritesProvider";
 import productstyles from "./Product.module.css";
+import styles from "./FavoritesPage.module.css";
 
 function FavoritesPage({ products }) {
   const { favorites } = useFavorites();
@@ -12,7 +13,9 @@ function FavoritesPage({ products }) {
         <header>
           <Navbar />
         </header>
-        <p>You do not have any favorites yet</p>
+        <p className={styles.defaultText}>
+          Click the star on a cocktail image to add it to your Favorites!
+        </p>
       </>
     );
   }
@@ -24,23 +27,23 @@ function FavoritesPage({ products }) {
   return (
     <>
       <Navbar />
-      <h2>Here are your favs:</h2>
-      {favoriteProducts.map((product) => (
-        <div key={product.idDrink}>
-          <Link to={`/products/${product.idDrink}`}>
-            <div className={`${productstyles.card} ${productstyles.details}`}>
-              <img
-                src={`${product.strDrinkThumb}/medium`}
-                alt={product.strDrink}
-                width="50"
-              />
-              <br />
-              <span className={productstyles.name}>{product.strDrink}</span>
+      <h2 className={styles.favoritesTitle}>My Favorites</h2>
+      <div className={styles.productsContainer}>
+        {favoriteProducts.map((product) => (
+          <Link key={product.idDrink} to={`/products/${product.idDrink}`}>
+            <div className={styles.card}>
+              <div className={styles.imageContainer}>
+                <img
+                  src={`${product.strDrinkThumb}/medium`}
+                  alt={product.strDrink}
+                />
+                <FavoriteButton id={product.idDrink} />
+              </div>
+              <p className={styles.name}>{product.strDrink}</p>
             </div>
           </Link>
-          <FavoriteButton id={product.idDrink} />
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }

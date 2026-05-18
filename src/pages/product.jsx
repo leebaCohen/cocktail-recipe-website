@@ -1,10 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import headerstyles from "./Header.module.css";
 import Navbar from "./navbar";
 import productstyles from "./Product.module.css";
 import FavoriteButton from "./FavoriteButton";
-import LoadingSpinner from "./LoadingSpinner";
+import LoaderSpinner from "./LoaderSpinner";
 
 function ProductDetails({ isLoading, setIsLoading }) {
   const { idDrink } = useParams();
@@ -37,10 +36,36 @@ function ProductDetails({ isLoading, setIsLoading }) {
   if (isLoading)
     return (
       <div>
-        <LoadingSpinner />
+        <LoaderSpinner />
       </div>
     );
   if (!product) return <div>Cocktail not found!</div>;
+
+  let ingredient = "";
+  let measure = "";
+  const ingredientArr = [];
+  for (let i = 1; i <= 15; i++) {
+    ingredient = "strIngredient" + i;
+    measure = "strMeasure" + 1;
+    if (product[ingredient] !== null) {
+      ingredientArr.push({
+        name: product[ingredient],
+        measure: product[measure] ? product[measure] : "",
+      });
+      console.log(ingredientArr);
+    } else {
+      break;
+    }
+  }
+
+  // use a regular expression because of the different formats within the API
+  let instructionsArr = (
+    product?.strInstructions?.split(/\.\s*|\d+\.\s*/) || []
+  )
+    .map((step) => step.trim())
+    .filter((step) => step !== "");
+  const isAlcoholic = product?.strAlcoholic === "Alcoholic" ? "Yes" : "No";
+  const glass = product?.strGlass;
 
   return (
     <>
@@ -48,14 +73,50 @@ function ProductDetails({ isLoading, setIsLoading }) {
         <Navbar />
       </header>
       <main className={productstyles.singleContainer}>
-        <div className={`${productstyles.card} ${productstyles.largeCard}`}>
+        <div className={productstyles.card}>
           <h2>{product.strDrink}</h2>
-          <FavoriteButton id={idDrink} />
-          <img src={`${product.strDrinkThumb}/medium`} alt={product.strDrink} />
+          <div className={productstyles.imageContainer}>
+            <img
+              src={`${product.strDrinkThumb}/medium`}
+              alt={product.strDrink}
+            />
+            <FavoriteButton id={idDrink} />
+          </div>
+
           <div className={productstyles.details}>
-            <p>Category: {product.strCategory}</p>
-            <p>Ingredients: </p>
-            <p>Instructions: {product.strInstructions}</p>
+            <div className={productstyles.leftPanel}>
+              <p>
+                <span className={productstyles.subheader}>
+                  Drink Category:{" "}
+                </span>
+                {product.strCategory}
+              </p>
+              <p>
+                <span className={productstyles.subheader}>Alcoholic: </span>
+                {isAlcoholic}
+              </p>
+              <p>
+                <span className={productstyles.subheader}>Glass: </span>
+                {product.strGlass}
+              </p>
+            </div>
+
+            <div className={productstyles.rightPanel}>
+              <p className={productstyles.subheader}>Ingredients:</p>
+              <ul className={productstyles.ingredientList}>
+                {ingredientArr.map((ingredient, index) => (
+                  <li key={index}>
+                    {ingredient.measure} {ingredient.name}{" "}
+                  </li>
+                ))}
+              </ul>
+              <p className={productstyles.subheader}>Directions:</p>
+              <ol className={productstyles.instructionList}>
+                {instructionsArr.map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
       </main>
