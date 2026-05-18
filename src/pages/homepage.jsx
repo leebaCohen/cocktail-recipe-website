@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./navbar.jsx";
 import FavoriteButton from "./FavoriteButton.jsx";
 import homepageStyles from "./Homepage.module.css";
-import LoadingSpinner from "./LoadingSpinner.jsx";
+import LoaderSpinner from "./LoaderSpinner.jsx";
 
 export function HomePage({ products, setQuery, isLoading }) {
   const navigateTo = useNavigate();
@@ -26,7 +26,7 @@ export function HomePage({ products, setQuery, isLoading }) {
           <Navbar />
         </header>
         <main>
-          <LoadingSpinner />
+          <LoaderSpinner />
         </main>
       </>
     );

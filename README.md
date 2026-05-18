@@ -1,16 +1,28 @@
-# React + Vite
+# Cocktails and Code — Multi-Page Cocktail Discovery Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional multi-page web application built with **React** and **TheCocktailDB API**. The platform allows users to search for drink recipes, view detailed ingredient and instruction summaries, and save favorites with persistent storage.
 
-Currently, two official plugins are available:
+**Project Deadline:** May 19, 2026
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dynamic Search:** Real-time recipe lookups from an external data source displayed in a responsive grid.
+- **Persistent Favorites:** Saves bookmarked items using browser local storage so choices remain intact after a page refresh.
+- **State Management:** Handles loading states, empty search results, and API errors without crashing.
+- **Fixed Navigation:** A persistent top navbar that links to all pages and indicates the current active route.
+- **Architecture:** The application is split into modular components to maintain clean code separation.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Accessibility Compliance
+
+- **Audit Verification:** Validated via Accessibility Checker to fix all critical automated errors.
+- **Interactive Elements:** Features explicit image alt descriptions and precise interactive aria-labels to accommodate screen readers.
+
+---
+
+## Attributions & Credits
+
+- **Data Sourcing:** All cocktail profiles, instructions, and image assets are pulled in real time from [TheCocktailDB API](https://www.thecocktaildb.com).
