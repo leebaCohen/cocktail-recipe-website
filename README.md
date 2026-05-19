@@ -2,7 +2,7 @@
 
 A professional multi-page web application built with **React** and **TheCocktailDB API**. The platform allows users to search for drink recipes, view detailed ingredient and instruction summaries, and save favorites with persistent storage.
 
-**Contributers:** Leeba Cohen and Shira Cheifetz
+**Contributors:** Leeba Cohen and Shira Cheifetz
 **Project Deadline:** May 19, 2026
 
 ---
