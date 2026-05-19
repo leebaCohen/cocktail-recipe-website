@@ -10,7 +10,7 @@ export default function Footer() {
       <hr />
       <div className={styles.infoContainer}>
         <div className={styles.helpfulLinks}>
-          <h4>Helpful links</h4>
+          <h3>Helpful links</h3>
           <nav aria-label="footer navigation">
             <ul className={styles.navLinks}>
               <li>
@@ -33,8 +33,8 @@ export default function Footer() {
             </ul>
           </nav>
         </div>
-        <div className={styles.socials}>
-          <h4>Get to know us better</h4>
+        <div>
+          <h3>Get to know us better</h3>
           <div className={styles.socialLinks}>
             <p>
               <FaLinkedin className={styles.icon} />

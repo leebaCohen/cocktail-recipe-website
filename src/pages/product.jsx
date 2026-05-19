@@ -34,26 +34,27 @@ function ProductDetails({ isLoading, setIsLoading }) {
     }
   }, [idDrink]);
 
+  const navigate = useNavigate();
+
   if (isLoading)
     return (
-      <div>
+      <div aria-busy="true">
         <LoaderSpinner />
       </div>
     );
-  if (!product) return <div>Cocktail not found!</div>;
+  if (!product) return <div role="alert">Cocktail not found!</div>;
 
   let ingredient = "";
   let measure = "";
   const ingredientArr = [];
   for (let i = 1; i <= 15; i++) {
     ingredient = "strIngredient" + i;
-    measure = "strMeasure" + 1;
+    measure = "strMeasure" + i;
     if (product[ingredient] !== null) {
       ingredientArr.push({
         name: product[ingredient],
         measure: product[measure] ? product[measure] : "",
       });
-      console.log(ingredientArr);
     } else {
       break;
     }
@@ -73,53 +74,54 @@ function ProductDetails({ isLoading, setIsLoading }) {
       <header>
         <Navbar />
       </header>
-      <main className={productstyles.singleContainer}>
-        <div className={productstyles.card}>
-          <h2>{product.strDrink}</h2>
-          <div className={productstyles.imageContainer}>
-            <img
-              src={`${product.strDrinkThumb}/medium`}
-              alt={product.strDrink}
-            />
-            <FavoriteButton id={idDrink} />
-          </div>
-
-          <div className={productstyles.details}>
-            <div className={productstyles.leftPanel}>
-              <p>
-                <span className={productstyles.subheader}>
-                  Drink Category:{" "}
-                </span>
-                {product.strCategory}
-              </p>
-              <p>
-                <span className={productstyles.subheader}>Alcoholic: </span>
-                {isAlcoholic}
-              </p>
-              <p>
-                <span className={productstyles.subheader}>Glass: </span>
-                {product.strGlass}
-              </p>
+      <main className={productstyles.pageContainer}>
+        <div className={productstyles.singleContainer}>
+          <div className={productstyles.card}>
+            <h1>{product.strDrink}</h1>
+            <div className={productstyles.imageContainer}>
+              <img
+                src={`${product.strDrinkThumb}/medium`}
+                alt={`Picture of a ${product.strDrink}.`}
+              />
+              <FavoriteButton id={idDrink} />
             </div>
 
-            <div className={productstyles.rightPanel}>
-              <p className={productstyles.subheader}>Ingredients:</p>
-              <ul className={productstyles.ingredientList}>
-                {ingredientArr.map((ingredient, index) => (
-                  <li key={index}>
-                    {ingredient.measure} {ingredient.name}{" "}
-                  </li>
-                ))}
-              </ul>
-              <p className={productstyles.subheader}>Directions:</p>
-              <ol className={productstyles.instructionList}>
-                {instructionsArr.map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
-              </ol>
+            <div className={productstyles.details}>
+              <section className={productstyles.leftPanel}>
+                <h2 className={productstyles.subheader}>Drink Category:</h2>
+                <p>{product.strCategory}</p>
+                <h2 className={productstyles.subheader}>Alcoholic:</h2>
+                <p>{isAlcoholic}</p>
+                <h2 className={productstyles.subheader}>Glass:</h2>
+                <p>{product.strGlass}</p>
+              </section>
+
+              <section className={productstyles.rightPanel}>
+                <h2 className={productstyles.subheader}>Ingredients:</h2>
+                <ul className={productstyles.ingredientList}>
+                  {ingredientArr.map((ingredient, index) => (
+                    <li key={index}>
+                      {ingredient.measure} {ingredient.name}{" "}
+                    </li>
+                  ))}
+                </ul>
+                <h2 className={productstyles.subheader}>Directions:</h2>
+                <ol className={productstyles.instructionList}>
+                  {instructionsArr.map((instruction, index) => (
+                    <li key={index}>{instruction}</li>
+                  ))}
+                </ol>
+              </section>
             </div>
           </div>
         </div>
+        <button
+          className={productstyles.returnBtn}
+          onClick={() => navigate("/")}
+          aria-label="Return to Home"
+        >
+          Return to Home
+        </button>
       </main>
       <footer>
         <Footer />

@@ -27,7 +27,9 @@ export function HomePage({ products, setQuery, isLoading }) {
           <Navbar />
         </header>
         <main>
-          <LoaderSpinner />
+          <div aria-busy="true">
+            <LoaderSpinner />
+          </div>
         </main>
       </>
     );
@@ -39,32 +41,34 @@ export function HomePage({ products, setQuery, isLoading }) {
       </header>
       <main>
         <div>
-          <form
-            className={homepageStyles.searchForm}
-            onSubmit={handleSearch}
-            value={searchValue}
-          >
+          <form className={homepageStyles.searchForm} onSubmit={handleSearch}>
             <input
               type="text"
               name="searchField"
               placeholder="Search cocktails..."
               className={homepageStyles.searchInput}
+              value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
+              aria-label="Search for a cocktail"
             />
-            <button type="submit" className={homepageStyles.searchButton}>
+            <button
+              type="submit"
+              className={homepageStyles.searchButton}
+              aria-label="Submit cocktail search"
+            >
               Search
             </button>
           </form>
         </div>
 
-        <div className={homepageStyles.productsContainer}>
+        <section className={homepageStyles.productsContainer}>
           {products.map((product) => (
             <Link key={product.idDrink} to={`/products/${product.idDrink}`}>
               <div className={homepageStyles.card}>
                 <div className={homepageStyles.imageContainer}>
                   <img
                     src={`${product.strDrinkThumb}/medium`}
-                    alt={product.strDrink}
+                    alt={`${product.strDrink} thumbnail.`}
                   />
 
                   <FavoriteButton id={product.idDrink} />
@@ -73,7 +77,7 @@ export function HomePage({ products, setQuery, isLoading }) {
               </div>
             </Link>
           ))}
-        </div>
+        </section>
       </main>
       <footer>
         <Footer />

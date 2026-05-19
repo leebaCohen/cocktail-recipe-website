@@ -23,7 +23,7 @@
 .navbar a {
   text-decoration: none;
   color: white;
-  transition: color 0.3s;
+  transition: color 0.2s ease;
 }
 
 .pageTitle:hover {
@@ -37,7 +37,13 @@
 }
 
 .navLinks a:hover {
-  color: #ffcbd8;
+  color: #ffd0d0;
+}
+
+.navLinks a[aria-current="page"],
+.activeLink {
+  color: #ffd0d0;
+  font-weight: 500;
 }
 
 .favoritesLink {

@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.linksTitle {
+  text-align: center;
+}
+
 .navLinks {
   list-style-type: none;
   padding: 2px;
