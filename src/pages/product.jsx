@@ -4,6 +4,7 @@ import Navbar from "./navbar";
 import productstyles from "./Product.module.css";
 import FavoriteButton from "./FavoriteButton";
 import LoaderSpinner from "./LoaderSpinner";
+import Footer from "./Footer.jsx";
 
 function ProductDetails({ isLoading, setIsLoading }) {
   const { idDrink } = useParams();
@@ -120,6 +121,9 @@ function ProductDetails({ isLoading, setIsLoading }) {
           </div>
         </div>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

@@ -4,6 +4,7 @@ import Navbar from "./navbar.jsx";
 import FavoriteButton from "./FavoriteButton.jsx";
 import homepageStyles from "./Homepage.module.css";
 import LoaderSpinner from "./LoaderSpinner.jsx";
+import Footer from "./Footer.jsx";
 
 export function HomePage({ products, setQuery, isLoading }) {
   const navigateTo = useNavigate();
@@ -74,6 +75,9 @@ export function HomePage({ products, setQuery, isLoading }) {
           ))}
         </div>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }
