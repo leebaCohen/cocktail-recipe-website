@@ -36,6 +36,14 @@
   justify-content: center;
 }
 
+.socialLinks a {
+  color: rgb(118, 118, 118);
+}
+
+.socialLinks a:hover {
+  color: rgb(68, 68, 68);
+}
+
 .icon {
   font-size: 30px;
 }
@@ -44,4 +52,13 @@
   display: flex;
   align-items: center;
   gap: 50px;
+}
+
+.copyrightText a {
+  text-decoration: none;
+  color: rgb(68, 68, 68);
+}
+
+.copyrightText a:hover {
+  text-decoration: underline;
 }
