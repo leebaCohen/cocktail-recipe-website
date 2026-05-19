@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.linksTitle {
+  text-align: center;
+}
+
 .navLinks {
   list-style-type: none;
   padding: 2px;
@@ -38,5 +42,6 @@
 
 .copyrightText {
   display: flex;
+  align-items: center;
   gap: 50px;
 }

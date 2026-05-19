@@ -23,6 +23,13 @@ A professional multi-page web application built with **React** and **TheCocktail
 
 ---
 
+## NPM Packages
+
+- **react-loader-spinner:** Utilized to manage asynchronous UI transitions by rendering an accessible, smooth loading animation while cocktail data is being fetched from the API.
+- **react-icons:** Used to inject optimized, inline vector graphics (like `MdStarRate`) into the navigation and favorite systems.
+
+---
+
 ## Attributions & Credits
 
 - **Data Sourcing:** All cocktail profiles, instructions, and image assets are pulled in real time from [TheCocktailDB API](https://www.thecocktaildb.com).

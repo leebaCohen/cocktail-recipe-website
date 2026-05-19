@@ -41,7 +41,7 @@ function FavoritesPage({ products }) {
                 <div className={styles.imageContainer}>
                   <img
                     src={`${product.strDrinkThumb}/medium`}
-                    alt={product.strDrink}
+                    alt={`Picture of ${product.strDrink} thumbnail`}
                   />
                   <FavoriteButton id={product.idDrink} />
                 </div>

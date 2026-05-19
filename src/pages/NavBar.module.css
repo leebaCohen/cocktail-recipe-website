@@ -8,13 +8,16 @@
 }
 
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 30px;
+  padding: 1px 30px;
   background-color: #6f0223;
   color: white;
   box-shadow: 0 4px 6px -1px rgba(51, 3, 14, 0.3);
@@ -23,7 +26,7 @@
 .navbar a {
   text-decoration: none;
   color: white;
-  transition: color 0.3s;
+  transition: color 0.2s ease;
 }
 
 .pageTitle:hover {
@@ -37,7 +40,13 @@
 }
 
 .navLinks a:hover {
-  color: #ffcbd8;
+  color: #ffd0d0;
+}
+
+.navLinks a[aria-current="page"],
+.activeLink {
+  color: #ffd0d0;
+  font-weight: 500;
 }
 
 .favoritesLink {

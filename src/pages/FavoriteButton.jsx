@@ -17,7 +17,12 @@ function FavoriteButton({ id }) {
   }
 
   return (
-    <button className={styles.favBtn} onClick={handleFavoriteClick}>
+    <button
+      className={styles.favBtn}
+      onClick={handleFavoriteClick}
+      aria-label={isFavorite(id) ? "Remove from favorites" : "Add to favorites"}
+      aria-pressed={isFavorite(id)}
+    >
       {isFavorite(id) ? (
         <>
           <MdStarRate className={styles.yellowStar} />

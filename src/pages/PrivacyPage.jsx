@@ -9,7 +9,7 @@ export default function PrivacyPage() {
         <Navbar />
       </header>
       <main>
-        <div className={styles.container}>
+        <article className={styles.container}>
           <h1 className={styles.policyTitle}>Privacy Policy</h1>
           <h2 className={styles.subtitle}>Your Privacy is Important to Us</h2>
           <p className={styles.content}>
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
             personal information. To exercise these rights, please contact us
             using the contact information provided on our website.
           </p>
-        </div>
+        </article>
       </main>
       <footer>
         <Footer />

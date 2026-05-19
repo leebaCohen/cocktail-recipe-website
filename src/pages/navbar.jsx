@@ -1,12 +1,12 @@
 import navstyles from "./NavBar.module.css";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { MdStarRate } from "react-icons/md";
 
 export default function Navbar() {
   return (
     <nav className={navstyles.navbar}>
       <Link to="/">
-        <h2 className={navstyles.pageTitle}>
+        <p className={navstyles.pageTitle}>
           <img
             src={`${import.meta.env.BASE_URL}favicon-32x32.png`}
             alt="Cocktail Recipe Logo"
@@ -14,28 +14,51 @@ export default function Navbar() {
             height="32"
           />
           Cocktails and Code
-        </h2>
+        </p>
       </Link>
       <ul className={navstyles.navLinks}>
         <li>
-          <Link to="/">Home</Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? navstyles.activeLink : "")}
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <Link to="/favorites">
+          <NavLink
+            to="/favorites"
+            className={({ isActive }) => (isActive ? navstyles.activeLink : "")}
+          >
             <div className={navstyles.favoritesLink}>
-              <MdStarRate />
+              <MdStarRate aria-hidden="true" />
               Favorites
             </div>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/about">About Us</Link>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? navstyles.activeLink : "")}
+          >
+            About Us
+          </NavLink>
         </li>
         <li>
-          <Link to="/contact">Contact Us</Link>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) => (isActive ? navstyles.activeLink : "")}
+          >
+            Contact Us
+          </NavLink>
         </li>
         <li>
-          <Link to="/privacy">Privacy Policy</Link>
+          <NavLink
+            to="/privacy"
+            className={({ isActive }) => (isActive ? navstyles.activeLink : "")}
+          >
+            Privacy Policy
+          </NavLink>
         </li>
       </ul>
     </nav>
