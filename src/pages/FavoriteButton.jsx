@@ -20,7 +20,8 @@ function FavoriteButton({ id }) {
     <button
       className={styles.favBtn}
       onClick={handleFavoriteClick}
-      aria-label="Add to favorites"
+      aria-label={isFavorite(id) ? "Remove from favorites" : "Add to favorites"}
+      aria-pressed={isFavorite(id)}
     >
       {isFavorite(id) ? (
         <>

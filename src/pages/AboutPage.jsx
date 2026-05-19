@@ -10,7 +10,7 @@ export default function AboutPage() {
         <Navbar />
       </header>
       <main>
-        <div className={styles.container}>
+        <article className={styles.container}>
           <h1 className={styles.aboutUsTitle}>About Us</h1>
           <h2 className={styles.subtitle}>Welcome to Cocktails & Code</h2>
           <p className={styles.content}>
@@ -46,14 +46,14 @@ export default function AboutPage() {
           </ul>
           <div className={styles.cheersSubtitle}>
             <h2 className={styles.subtitle}>Cheers to making better drinks </h2>
-            <PiCheersLight className={styles.cheersIcon} />
+            <PiCheersLight className={styles.cheersIcon} aria-hidden="true" />
           </div>
           <p className={styles.content}>
             We are constantly expanding our collection and adding new features
             to enhance your home bartending experience. Grab a shaker, explore
             our recipes, and let's mix something incredible together.
           </p>
-        </div>
+        </article>
       </main>
       <footer>
         <Footer />

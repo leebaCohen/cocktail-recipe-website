@@ -32,7 +32,9 @@ export default function Navbar() {
           >
             <div className={navstyles.favoritesLink}>
               <MdStarRate aria-hidden="true" />
-              Favorites
+              <span aria-current={isActive ? "page" : undefined}>
+                Favorites
+              </span>
             </div>
           </NavLink>
         </li>
@@ -41,7 +43,7 @@ export default function Navbar() {
             to="/about"
             className={({ isActive }) => (isActive ? navstyles.activeLink : "")}
           >
-            About Us
+            <span aria-current={isActive ? "page" : undefined}>About Us</span>
           </NavLink>
         </li>
         <li>
@@ -49,7 +51,7 @@ export default function Navbar() {
             to="/contact"
             className={({ isActive }) => (isActive ? navstyles.activeLink : "")}
           >
-            Contact Us
+            <span aria-current={isActive ? "page" : undefined}>Contact Us</span>
           </NavLink>
         </li>
         <li>
@@ -57,7 +59,11 @@ export default function Navbar() {
             to="/privacy"
             className={({ isActive }) => (isActive ? navstyles.activeLink : "")}
           >
-            Privacy Policy
+            {({ isActive }) => (
+              <span aria-current={isActive ? "page" : undefined}>
+                Privacy Policy
+              </span>
+            )}
           </NavLink>
         </li>
       </ul>

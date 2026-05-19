@@ -9,7 +9,7 @@ export default function ContactPage() {
         <Navbar />
       </header>
       <main>
-        <div className={styles.container}>
+        <article className={styles.container}>
           <h1 className={styles.contactUsTitle}>Contact Us</h1>
           <h2 className={styles.subtitle}>Get in Touch</h2>
           <p className={styles.content}>
@@ -50,7 +50,7 @@ export default function ContactPage() {
               Send Message
             </button>
           </form>
-        </div>
+        </article>
       </main>
       <footer>
         <Footer />
