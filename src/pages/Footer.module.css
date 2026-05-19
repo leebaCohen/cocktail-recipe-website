@@ -1,0 +1,42 @@
+.footerContainer {
+  margin: 25px;
+  padding: 0 15px;
+  color: rgb(68, 68, 68);
+  justify-content: center;
+}
+
+.infoContainer {
+  display: flex;
+  gap: 75px;
+  justify-content: center;
+}
+
+.navLinks {
+  list-style-type: none;
+  padding: 2px;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: rgb(68, 68, 68);
+  transition: 0.2s;
+}
+
+.navLinks a:hover {
+  color: black;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.copyrightText {
+  display: flex;
+  gap: 50px;
+}

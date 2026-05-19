@@ -1,6 +1,6 @@
 import navstyles from "./NavBar.module.css";
 import { Link } from "react-router-dom";
-import { MdStarRate, MdOutlineStarOutline } from "react-icons/md";
+import { MdStarRate } from "react-icons/md";
 
 export default function Navbar() {
   return (
@@ -13,7 +13,7 @@ export default function Navbar() {
             width="32"
             height="32"
           />
-          Cocktail Recipes
+          Cocktails and Code
         </h2>
       </Link>
       <ul className={navstyles.navLinks}>
